@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>广东青年之声-用户界面</title>
+<!--[if IE]>
+<script src="js/html5.js"></script>
+<![endif]-->
+ 
+<script type="text/javascript" src="http://www.gdzyz.cn/js/jquery-1.7.1.min.js"></script>
+<style type="text/css">
+  
+.div_select{border:solid 1px #ddd;    height: 100%;  position: relative; vertical-align: middle;}
+.parentNode{ color:#999; line-height:45px; font-size:13px; height:30px; width:90%; position:absolute; top:0px; background-color:#fff; height:100%; padding-left:10px}
+.bottom-dd-arrow{ position:absolute;right:15px; top:21px; z-index:999;	display:inline-block;border:6px solid transparent;border-top-color:#ccc;line-height:0;height:0;width:0}
+ .selectStyle{ position:relative; top:0px; top:0px; left:0px; width:99%; font-size:13px; color:#333; height:45px; opacity:0}
+.selectStyle option{height:25px; display:block;}
+
+
+</style>
+  </head>
+
+<body class="usebackroud">
+   
+
+<div class="div_select" style="width:130px;">
+  <div class="parentNode">---县区---</div>
+  <b class="bottom-dd-arrow"></b>
+  <select class="selectStyle" name="" style="opacity: 0;">
+    <option value="0">000000</option>
+    <option value="1">111111</option>
+    <option value="2">22222222</option>
+    <option value="3">333333333</option>
+    <option value="4">4444444</option>
+  </select>
+</div>
+
+ 
+
+<script>
+			$(function(){
+ 				 $('.selectStyle').css('opacity',0);
+				 $('.selectStyle').change(function(){
+				 var currentIndex=$(this).attr('value');
+      			$(this).parents('.div_select').find('.parentNode').html($($('select option')[currentIndex]).html())
+											  .css({'color':'#000'});	
+ 					 })
+				
+				})
+            </script>
+
+ 
+</body>
+</html>

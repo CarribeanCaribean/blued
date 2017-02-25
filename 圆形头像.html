@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圆形头像</title>
+	<style type="text/css" media="screen">
+		.ljlHeadContainer{width:200px;height: 200px;background-color:#ccc;}
+		.ljlHeadYuan{
+			width: 60px;
+			height: 60px;
+			overflow: hidden;
+			border-radius: 30px;
+		}
+		.ljlHeadImg{
+			width:60px;
+			height: 60px;
+			background-repeat:no-repeat;
+			background-position: center;
+			/*用background的好处是可以设置显示的图片在中间位置，*/
+		}
+		.ljlHeadImgYuan{
+			width:60px;
+			height: 60px;
+			border-radius:50%;
+		}
+	</style>
+</head>
+<body>
+	<div class="ljlHeadContainer">
+		<!-- 方法一 -->
+		<div class="ljlHeadYuan">
+			<!-- background图片写在这里可以方便后台查询数据后在此处显示 -->
+			<img class="ljlHeadImg" style="background-image: url('image/head.png');"/>
+		</div>
+		<!-- 方法二 -->
+		<img class="ljlHeadImgYuan" src="image/head.png" />
+		<!-- 方法三：直接用圆形图片 -->
+	</div>
+</body>
+</html>

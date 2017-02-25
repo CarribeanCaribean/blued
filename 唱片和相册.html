@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>唱片旋转相册效果</title>
+	<style type="text/css" media="screen">
+		*{padding:0px;margin: 0px;}
+		.mt20{margin-top: 20px;display: table;margin-right: auto;margin-left: auto;}
+		
+		/* 唱片旋转样式 */
+		.DicContainerImg{
+				animation:dicTran 5s linear;
+				-webkit-animation:dicTran 5s linear; /*Safari and Chrome*/
+				animation-iteration-count:infinite;
+				-webkit-animation-iteration-count:infinite; /*Safari and Chrome*/
+		}
+		@keyframes dicTran{
+			from{
+				transform:rotate(0deg);
+				-ms-transform:rotate(0deg); 	/* IE 9 */
+				-moz-transform:rotate(0deg); 	/* Firefox */
+				-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+				-o-transform:rotate(0deg); 	/* Opera */
+			}
+			to{
+				transform:rotate(360deg);
+				-ms-transform:rotate(360deg); 	/* IE 9 */
+				-moz-transform:rotate(360deg); 	/* Firefox */
+				-webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+				-o-transform:rotate(360deg); 	/* Opera */
+			}
+		}
+		@-moz-keyframes dicTran{
+			from{
+				transform:rotate(0deg);
+				-ms-transform:rotate(0deg); 	/* IE 9 */
+				-moz-transform:rotate(0deg); 	/* Firefox */
+				-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+				-o-transform:rotate(0deg); 	/* Opera */
+			}
+			to{
+				transform:rotate(360deg);
+				-ms-transform:rotate(360deg); 	/* IE 9 */
+				-moz-transform:rotate(360deg); 	/* Firefox */
+				-webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+				-o-transform:rotate(360deg); 	/* Opera */
+			}
+		}
+		@-webkit-keyframes dicTran{
+			from{
+				transform:rotate(0deg);
+				-ms-transform:rotate(0deg); 	/* IE 9 */
+				-moz-transform:rotate(0deg); 	/* Firefox */
+				-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+				-o-transform:rotate(0deg); 	/* Opera */
+			}
+			to{
+				transform:rotate(360deg);
+				-ms-transform:rotate(360deg); 	/* IE 9 */
+				-moz-transform:rotate(360deg); 	/* Firefox */
+				-webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+				-o-transform:rotate(360deg); 	/* Opera */
+			}
+		}
+		@-o-keyframes dicTran{
+			from{
+				transform:rotate(0deg);
+				-ms-transform:rotate(0deg); 	/* IE 9 */
+				-moz-transform:rotate(0deg); 	/* Firefox */
+				-webkit-transform:rotate(0deg); /* Safari 和 Chrome */
+				-o-transform:rotate(0deg); 	/* Opera */
+			}
+			to{
+				transform:rotate(360deg);
+				-ms-transform:rotate(360deg); 	/* IE 9 */
+				-moz-transform:rotate(360deg); 	/* Firefox */
+				-webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+				-o-transform:rotate(360deg); 	/* Opera */
+			}
+		}
+
+		/* 鼠标经过出现遮罩层 */
+		.MouseoverShowC{
+			width: 224px;
+			height: 300px;
+			overflow: hidden;
+			position: relative;
+		}
+		.MouseoverShowBg{
+			width: 100%;
+			height: 100%;
+		}
+		.MouseoverShowIntro{
+			width: 224px;
+			height: 300px;
+			text-align: center;
+			display: none;
+
+			position:absolute;
+			top: 0px;
+			left: 0px;
+
+			background-color:rgba(0, 0, 0, 0.5) !important;/*实现FF背景透明，文字不透明*/
+			filter:Alpha(opacity=50);/* 只支持IE6、7、8、9 */
+			position:static\9; /*hack\9只有ie678能识别 IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+			*zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+		}
+		.MouseoverShowIntro p{
+			position:relative;/*实现IE文字不透明*/
+		}
+		.MouseoverShowC:hover .MouseoverShowIntro{
+			display: block;
+		}
+		.ColorWhite{color:#fff;}
+
+		/* 鼠标经过向左滑动 */
+		.MouseoverShowRtl{
+			width: 224px;
+			height: 300px;
+			text-align: center;
+
+			position:absolute;
+			top: 0px;
+			left: 225px;
+
+			background-color:rgba(0, 0, 0, 0.5) !important;/*实现FF背景透明，文字不透明*/
+			filter:Alpha(opacity=50);/* 只支持IE6、7、8、9 */
+			position:static\9; /*hack\9只有ie678能识别 IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+			*zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+
+			transition:left 0.1s;
+			-moz-transition:left 0.1s; /* Firefox 4 */
+			-webkit-transition:left 0.1s; /* Safari and Chrome */
+			-o-transition:left 0.1s; /* Opera */
+		}
+		.MouseoverShowRtl p{
+			position:relative;/*实现IE文字不透明*/
+		}
+		.MouseoverShowC:hover .MouseoverShowRtl{
+			left: 0px;
+		}
+
+		/* 鼠标经过向上滑动 */
+		.MouseoverShowBtt{
+			width: 224px;
+			height: 300px;
+			text-align: center;
+
+			position:absolute;
+			top: 301px;
+			left: 0px;
+
+			background-color:rgba(0, 0, 0, 0.5) !important;/*实现FF背景透明，文字不透明*/
+			filter:Alpha(opacity=50);/* 只支持IE6、7、8、9 */
+			position:static\9; /*hack\9只有ie678能识别 IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+			*zoom:1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+
+			transition:top 0.1s;
+			-moz-transition:top 0.1s; /* Firefox 4 */
+			-webkit-transition:top 0.1s; /* Safari and Chrome */
+			-o-transition:top 0.1s; /* Opera */
+		}
+		.MouseoverShowBtt p{
+			position:relative;/*实现IE文字不透明*/
+		}
+		.MouseoverShowC:hover .MouseoverShowBtt{
+			top: 0px;
+		}
+
+		/* 鼠标经过放大 */
+		.MouseoverBig{
+			transform:none;
+			-ms-transform:none; 	/* IE 9 */
+			-moz-transform:none; 	/* Firefox */
+			-webkit-transform:none; /* Safari 和 Chrome */
+			-o-transform:none; 	/* Opera */
+
+			transition:transform 0.1s;
+			-moz-transition:transform 0.1s; /* Firefox 4 */
+			-webkit-transition:transform 0.1s; /* Safari and Chrome */
+			-o-transition:transform 0.1s; /* Opera */
+		}
+		.MouseoverBig:hover{
+			transform:scale(2, 2);
+			-ms-transform:scale(2, 2); 	/* IE 9 */
+			-moz-transform:scale(2, 2); 	/* Firefox */
+			-webkit-transform:scale(2, 2); /* Safari 和 Chrome */
+			-o-transform:scale(2, 2); 	/* Opera */
+		}
+		/* 图片走马灯效果 */
+		.HorseLampC{
+			width: 200px;
+			height: 1080px;
+			overflow: hidden;
+			position: relative;
+		}
+		.MouseoverMoving{
+			position: absolute;
+			top: 0px;
+			animation:HorseLamp 20s linear infinite;
+			-webkit-animation:HorseLamp 20s linear infinite; /* Safari 和 Chrome */
+		}
+		@keyframes HorseLamp{
+			from{left: 0;}
+			to{left:-1720px;}
+		}
+		@-o-keyframes HorseLamp{
+			from{left: 0;}
+			to{left:-1720px;}
+		}
+		@-webkit-keyframes HorseLamp{
+			from{left: 0;}
+			to{left:-1720px;}
+		}
+		@-moz-keyframes HorseLamp{
+			from{left: 0;}
+			to{left:-1720px;}
+		}
+	</style>
+</head>
+<body>
+	<!-- 唱片旋转 -->
+	<div class="DicContainer">
+		<img src="image/dic.jpg" alt="唱片" width="300px" height="300px" class="DicContainerImg"/>
+	</div>
+
+	<div class="mt20">
+		<ul style="list-style: none;">
+			<!-- 鼠标经过出现遮罩层 -->
+			<li>
+				<div class="MouseoverShowC">
+					<img src="image/mouseover.jpg" alt="背景图片" class="MouseoverShowBg"/>
+					<div class="MouseoverShowIntro"><p class="ColorWhite">This is a picture of</p></div>
+				</div>
+			</li>
+			<!-- 鼠标经过向左滑动 -->
+			<li>
+				<div class="MouseoverShowC">
+					<img src="image/mouseover.jpg" alt="背景图片" class="MouseoverShowBg"/>
+					<div class="MouseoverShowRtl"><p class="ColorWhite">This is a picture of</p></div>
+				</div>
+			</li>
+			<!-- 鼠标经过向上滑动 -->
+			<li>
+				<div class="MouseoverShowC">
+					<img src="image/mouseover.jpg" alt="背景图片" class="MouseoverShowBg"/>
+					<div class="MouseoverShowBtt"><p class="ColorWhite">This is a picture of</p></div>
+				</div>
+			</li>
+			<!-- 鼠标经过放大 -->
+			<li>
+				<div class="MouseoverShowC">
+					<img src="image/mouseover.jpg" alt="背景图片" class="MouseoverShowBg MouseoverBig"/>
+				</div>
+			</li>
+			<!-- 图片走马灯效果 -->
+			<li>
+				<div class="HorseLampC">
+					<img src="image/star.jpg" alt="星空图片" class="MouseoverMoving"/>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

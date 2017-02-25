@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta charset="UTF-8">
+	<title>手风琴</title>
+	<style type="text/css" media="screen">
+		*{padding:0;margin: 0;}
+		.HandPianoUL{width:100%;outline: none;}
+		.HandPianoUL li{padding: 15px 10px;display: block;border-bottom: 1px solid #eee;}
+		.HandPianoSecond{display: none;}
+	</style>
+</head>
+<body>
+	<ul class="HandPianoUL">
+		<li>
+			<h3>First</h3>
+			<div class="HandPianoSecond">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			</div>
+		</li>
+		<li>
+			<h3>First</h3>
+			<div class="HandPianoSecond">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			</div>
+		</li>
+		<li>
+			<h3>First</h3>
+			<div class="HandPianoSecond">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			</div>
+		</li>
+		<li>
+			<h3>First</h3>
+			<div class="HandPianoSecond">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			</div>
+		</li>
+		<li>
+			<h3>First</h3>
+			<div class="HandPianoSecond">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			</div>
+		</li>
+	</ul>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		$('.HandPianoUL li').click(function(){
+				// 点击当前元素显示二级菜单
+				$(this).children('div').slideToggle();
+				
+				// 非当前元素如果显示则隐藏
+				var status;
+				$(this).siblings().children('div.HandPianoSecond').each(function(){
+				    status=$(this).css('display');
+				    if(status=='block'){
+				    	$(this).slideUp();
+				    }
+				});
+				
+		});
+	</script>
+</body>
+</html>
+<!-- 总结：高度不固定，用css的transition实现下拉的动画效果不好；高度固定，可以用js也可以用css的transition来过渡 -->

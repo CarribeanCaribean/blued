@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>弹窗</title>
+	<link rel="stylesheet" type="text/css" href="">
+	<style>
+		body{width: 100px;height: 100px;}
+		.messageText{resize: none;outline: none;width:97%;height: 200px;}
+		.fullxi {display: none; width:100%; height:100%; left:0px; top: 0px; background:#000; opacity:0.5; position:fixed; z-index: 9;  }
+.thewindowxi {display: none; z-index:99; position:fixed; width:100%; top:50%; margin-top:-150px; color:#333; }
+.windowxi { background-color:#fff; border-radius:3px; -moz-border-radius:3px; width: 80%; height:auto; margin-right: auto; margin-left: auto;     padding-bottom: 10px;}
+.titlewxi { font-size: 1rem; line-height: 40px; font-weight: normal; height: 40px; text-align: center; background:#e8e8e8; border-radius:3px; -moz-border-radius:3px; }
+
+.agreementxi { width:97%; height:auto; overflow: scroll; margin-top: 10px;  margin-right: auto; margin-left: auto; font-size: 0.8rem; }
+.submitxi {background-color:#fff; margin-right: 10px; margin-left: 10px; margin-top: 10px; }
+.submitxi .button {outline: none; height: 2.5rem; width: 49%; background-color:#999; border-radius:2px; -moz-border-radius:2px; border:none; color:#fff; }
+.submitxi .button2 {outline: none; margin-left:2%; background:#da4453; }
+
+	</style>
+</head>
+
+<body>
+	<button id="fwxyLink">弹窗</button>
+	<div class="thewindowxi" id="fwxywindow">
+  		<div class="windowxi">
+	    	<h2 class="titlewxi">评论</h2>
+		    <div class="agreementxi">
+				<textarea name="" class="messageText">评论</textarea>
+		    </div>
+		    <div class="submitxi clearfix">
+			  <button id="cancelbtn" type="submit" class="button">返回</button><button type="submit" class="button button2" id="Surebtn" >确定</button>
+			</div>
+	    </div>
+	</div>
+<!-- 遮罩层 -->
+<div class="fullxi" id="fullxi"></div>
+	<script src="jquery-1.11.1.min.js"></script>
+	<script>
+	    $(function(){
+		   
+		    $('#fwxyLink').click(function(){
+		     $('.fullxi,.thewindowxi').show();
+		    })
+		    $('#cancelbtn,#Surebtn').click(function(){
+		     $('.fullxi,.thewindowxi').hide();
+		    })
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta charset="UTF-8">
+	<title>奔跑吧小人</title>
+	<style type="text/css" media="screen">
+		*{padding: 0;margin:0;}
+		
+		.RunningP{
+			width: 150px;
+			height: 300px;
+			background:url('image/running.jpg') 0 0 no-repeat;
+			-webkit-animation-name: RunningMan;/* 动画名称 */
+			-webkit-animation-iteration-count: infinite;/* 动画无限播放 */
+			-webkit-animation-timing-function: step-start;/* 马上跳到动画每一结束桢的状态 */
+			-webkit-animation-duration: 900ms;/* 动画运行的时间 */
+			
+		}
+		@keyframes RunningMan
+		{
+			0%{background-position: 0 0;}
+			12.5%{background-position: -153px 0;}
+			25%{background-position: -305px 0;}
+			37.5%{background-position: -458px 0;}
+			50%{background-position: -611px 0;}
+			62.5%{background-position: -759px 0;}
+			85%{background-position: -901px 0;}
+			97.5%{background-position: -1051px 0;}
+			100%{background-position: 0 0;}
+		}
+/* Firefox */
+		@-moz-keyframes RunningMan 
+		{
+
+			0%{background-position: 0 0;}
+			12.5%{background-position: -153px 0;}
+			25%{background-position: -305px 0;}
+			37.5%{background-position: -458px 0;}
+			50%{background-position: -611px 0;}
+			62.5%{background-position: -759px 0;}
+			85%{background-position: -901px 0;}
+			97.5%{background-position: -1051px 0;}
+			100%{background-position: 0 0;}
+		}
+/* Safari 和 Chrome */
+		@-webkit-keyframes RunningMan 
+		{
+			0%{background-position: 0 0;}
+			12.5%{background-position: -153px 0;}
+			25%{background-position: -305px 0;}
+			37.5%{background-position: -458px 0;}
+			50%{background-position: -611px 0;}
+			62.5%{background-position: -759px 0;}
+			85%{background-position: -901px 0;}
+			97.5%{background-position: -1051px 0;}
+			100%{background-position: 0 0;}
+		}
+/* Opera */
+		@-o-keyframes RunningMan 
+		{
+			0%{background-position: 0 0;}
+			12.5%{background-position: -153px 0;}
+			25%{background-position: -305px 0;}
+			37.5%{background-position: -458px 0;}
+			50%{background-position: -611px 0;}
+			62.5%{background-position: -759px 0;}
+			85%{background-position: -901px 0;}
+			97.5%{background-position: -1051px 0;}
+			100%{background-position: 0 0;}
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<div class="RunningP"></div>
+</body>
+</html>
