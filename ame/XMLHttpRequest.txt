@@ -1,0 +1,66 @@
+html:  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml">  
+<head runat="server">  
+    <meta http-equiv="Content-Type" content="text/html;charset=gb2312" />  
+    <title>示例</title>  
+    <script src="Ajax.js"></script>  
+</head>  
+<body>     
+<a href="#" onclick="ajaxReader('data5.xml'); return false"> 查看</a>  
+<div id="dataArea">  
+</div>              
+</body>  
+</html>  
+script:  
+// JScript File  
+function  ajaxReader(file)  
+    {  
+        //定义xmlobj对象  
+        var xmlObj=null;  
+        if(window.XMLHttpRequest)  
+        {  
+            xmlObj=new XMLHttpRequest();  
+        }  
+        else if(window.ActiveXObject)  
+        {  
+            xmlObj=new ActiveXObject("Microsoft.XMLHTTP");  
+        }  
+        else  
+        {  
+            return;  
+        }  
+          
+        xmlObj.onreadystatechange=function(){  
+                                                if(xmlObj.readyState==4)  
+                                                {                                                  
+                                                          processXML(xmlObj.responseXML);   
+                                                                                                       
+                                                 }  
+                                                 }                                                                                                                                            
+                                          
+       xmlObj.open('GET',file,true);  
+       xmlObj.send('');      
+    }  
+   
+function processXML(obj)  
+{  
+ var dataArray=obj.getElementsByTagName('pets')[0].childNodes;  
+    var dataArrayLength=dataArray.length;  
+    var insertData='<table>';  
+    insertData +='<tr><th>Pet5</th><th>Tasks</th></tr>';  
+      
+     for(var i=0;i<dataArrayLength;i++)  
+     {  
+        if(dataArray[i].tagName)  
+        {  
+            insertData+='<tr>';      
+            insertData +='<td>'+dataArray[i].tagName+'</td>';  
+            insertData +="<td>"+dataArray[i].getAttribute('tasks')+'</td>';  
+            insertData+='</tr>';     
+        }         
+   }  
+     
+   insertData +=+'</table>';  
+   document.getElementById('dataArea4').innerHTML =insertData;  
+}  

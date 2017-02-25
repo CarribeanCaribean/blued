@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>获取验证码计时器</title> 
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script> 
+</head> 
+<body> 
+<button id="yzmGet" onclick="getYzm()">获取手机动态码</button>
+<script type="text/javascript">
+// 手机获取验证码计时
+	var timer=10;
+	var timeout;
+	function getYzm(){
+		$('#yzmMsg').html('我们已经向您的手机发送了验证码，请注意查收！(如果2分钟后仍未收到短信，请重新发送)');
+		if(timer==0){// 超时
+			$('#yzmGet').html('获取手机动态码');
+			$('#yzmGet').removeAttr('disabled');
+			clearTimeout(timeout);
+			timer=10;
+			return;
+		}else{
+			$('#yzmGet').html(timer+'秒后可重发');
+			$('#yzmGet').attr('disabled','true');
+			timer--;
+		}
+		timeout=setTimeout(function() {
+			getYzm()
+		},1000)
+	}
+		// function nextStep(id){var num=id.replace(/\D/g,"");取得id最后的数字；}
+</script>
+</body> 
+</html>

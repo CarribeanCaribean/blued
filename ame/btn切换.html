@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>btn切换</title>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+
+	<style type="text/css" media="screen">
+	*{padding: 0;margin: 0;}
+	ul{list-style: none;}
+	button{outline: none;border:1px solid transparent;}
+	.fl{float: left;}
+	.fr{float: right;}
+	.white{color: #fff;}
+
+.ListNewBanner{}
+.ListNewBannerFirstBg{width: 100%;background-color: #157dc8;}
+.ListNewBannerSecondBg{width: 100%;background-color: #fff;}
+.ListNewBannerSecondWord{line-height: 30px;padding-top: 15px;padding-bottom: 15px;}
+.ListNewBannerFirstTitle{font-size: 24px;font-weight: normal;line-height: 68px;}
+.ListNewBannerFirstCon{padding-bottom: 20px;padding-top: 20px;}
+.ListNewBannerFirstHeadC{}
+.ListNewBannerFirstImgC{position: relative; margin-left: 6px;margin-right: 6px; width: 422px;height:68px;overflow:hidden;white-space: nowrap;}
+.ListNewBannerFirstImg{width: 70px;height: 70px;}
+.ListNewBannerFirstImgUL{position: absolute;left: 0px;}
+.ListNewBannerFirstImgUL li{display:inline-block;margin-left: 5px;margin-right: 5px;
+    width: 68px;
+    height: 68px;
+    border-radius: 34px;
+    overflow: hidden;position:relative;
+    cursor: pointer;
+}
+.ListNewBannerFirstBtn{
+	width: 40px;height: 40px;border-radius: 20px;background-color: #ebebeb;
+	background-repeat: no-repeat;margin-top: 16px;
+}
+.ListNewBannerFirstBtnL{background-image: url('image/bannerbtnl.png');background-position: 10px center;}
+.ListNewBannerFirstBtnR{background-image: url('image/bannerbtnr.png');background-position: 14px center;}
+.ListNewBannerFirstName{
+	display: none;
+	position: absolute;
+	top:48px;
+    height: 30px;
+    width: 100%;
+    text-align: center;
+    background:rgba(16, 112, 182, 0.5) none repeat scroll 0 0 !important;/*实现FF背景透明，文字不透明*/
+filter:Alpha(opacity=50);
+ background:#1070b6;/*实现IE背景透明*/
+}
+.ListNewBannerFirstName p{
+	 position:relative;/*实现IE文字不透明*/
+}
+.ListNewBannerFirstImgUL li:hover .ListNewBannerFirstName{display: block;}
+	</style>
+</head>
+<body>
+	<!-- 头像轮播 -->
+            <div class="ListNewBannerFirstHeadC">
+                  <!-- 左侧按钮 -->
+                  <button class="ListNewBannerFirstBtn ListNewBannerFirstBtnL fl" onclick="clickRTL(id)" id="1"></button>
+                  <!-- 中间头像 -->
+                  <div class="ListNewBannerFirstImgC fl">
+                      
+                          <ul class="ListNewBannerFirstImgUL clear" id="LNBFI">
+                            <li>
+                                <img src="image/head.png" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName ">
+                                  <p class="white">ㄗs 绝恋 oО </p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/gq2.jpg" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName "><p class="white">ㄗs 绝恋 oО </p></div>
+                            </li>
+                            <li>
+                                <img src="image/head.png" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName "><p class="white">ㄗs 绝恋 oО </p></div>
+                            </li>
+                            <li>
+                                <img src="image/head.png" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName "><p class="white">ㄗs 绝恋 oО </p> </div>
+                            </li>
+                            <li>
+                                <img src="image/gq2.jpg" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName "><p class="white">ㄗs 绝恋 oО </p></div>
+                            
+                            <li>
+                                <img src="image/gq2.jpg" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName "><p class="white">ㄗs 绝恋 oО </p></div>
+                            </li>
+                            <li>
+                                <img src="image/head.png" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName "><p class="white">ㄗs 绝恋 oО </p></div>
+                            </li>
+                            <li>
+                                <img src="image/gq2.jpg" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName "><p class="white">ㄗs 绝恋 oО </p></div>
+                            </li>
+                            <li>
+                                <img src="image/head.png" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName "><p class="white">ㄗs 绝恋 oО </p></div>
+                            </li>
+                            <li>
+                                <img src="image/gq2.jpg" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName "><p class="white">ㄗs 绝恋 oО </p></div>
+                            </li>
+                            <li>
+                                <img src="image/gq2.jpg" alt="" class="ListNewBannerFirstImg">
+                                <div class="ListNewBannerFirstName "><p class="white">ㄗs 绝恋 oО </p></div>
+                            </li>
+                          </ul>
+                     
+                  </div>
+                  <!-- 右侧按钮 -->
+                  <button class="ListNewBannerFirstBtn ListNewBannerFirstBtnR fl" onclick="clickRTL(id)" id="0"></button>
+                  <div class="clear"></div>
+
+            </div>
+            <script type="text/javascript">
+                  // banner右侧轮播
+                          var WithUK=$('.ListNewBannerFirstImgUL').width();
+                          var WidthNum=$('.ListNewBannerFirstImgC').width();
+                          var i=0;//左边按钮可点击
+                          var z=Math.floor(WithUK/WidthNum);//向下取整
+                          var y=z;//右边按钮可点击
+                          
+                     function clickRTL(btnid){
+                        var leftnum=$('#LNBFI').position().left;
+                          if(btnid==1){//left减少
+                            if(y>0){
+                                  var l=leftnum-WidthNum;
+                                  console.log(l);
+                                  $('#LNBFI').css('left',l);
+                                  y--;
+                                  i++;
+                              }else{
+                                  var maxLeft=WidthNum*z;
+                                  $('#LNBFI').css('left',-maxLeft);
+                              }
+                          }else{//left增加
+                            if(i>0){
+                                  $('#LNBFI').css('left',leftnum+WidthNum);
+                                  i--;y++
+                              }else{
+                                  $('#LNBFI').css('left',0);
+                              }
+                          }
+                      }
+                      
+                        
+                     
+                  </script>
+</body>
+</html>

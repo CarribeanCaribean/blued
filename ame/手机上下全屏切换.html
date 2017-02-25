@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>手机上下全屏切换</title>
+	<link rel="stylesheet" type="text/css" href="animate.css">
+	<style>
+		*{padding: 0;margin: 0;}
+		.TagUpDownC{
+			position:fixed;
+			top: 0;
+			left: 0;
+		}
+		.TagChangePage1,.TagChangePage2,.TagChangePage3{
+			overflow: hidden;
+		}
+		.TagChangePage1,.TagChangePage2,.TagChangePage3{
+			position: relative;
+		}
+		.TagChangePage1{
+			background-color: #8ec63f;
+		}
+		.TagChangePage2{
+			background-color: #156aba;
+		}
+		.TagChangePage3{
+			background-color:#efc50f;
+		}
+		.DownImage,.DownImageup{
+			border:none;
+			outline: none;
+			width: 100%;
+			height: 5%;
+			position: absolute;
+		}
+		.DownImage{
+			bottom: 3%;
+			background:transparent url('image/down.png') no-repeat center;
+		}
+		.DownImageup{
+			top:3%;
+			background:transparent url('image/up.png') no-repeat center;
+		}
+	</style>
+</head>
+<body>
+<div class="TagUpDownC">
+	<div class="TagChangePage1">
+		<button class="DownImage animated bounce" onclick="Btnscroll()"></button>
+	</div>
+	<div class="TagChangePage2">
+		<button class="DownImageup animated bounce" onclick="Btnscrollup()"></button>
+		<button class="DownImage animated bounce" onclick="Btnscroll()"></button>
+	</div>
+	<div class="TagChangePage3" >
+		<button class="DownImageup animated bounce" onclick="Btnscrollup()"></button>
+		
+	</div>
+</div>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		// 实现全屏
+		var h,w;
+		fullscreen();
+		window.onresize=function(){fullscreen()};
+		function fullscreen(){
+			w=window.innerWidth|| document.documentElement.clientWidth|| document.body.clientWidth;
+			h=window.innerHeight|| document.documentElement.clientHeight|| document.body.clientHeight;
+			$('.TagChangePage1,.TagChangePage2,.TagChangePage3').css({
+				width: w,
+				height: h
+			});
+		}
+		// 实现向下按钮跳动
+		function DownShakeRemove()
+		{
+				$('.DownImage,.DownImageup').removeClass('bounce');
+		}
+		function DownShakeAdd()
+		{
+				$('.DownImage,.DownImageup').addClass('bounce');
+		}
+		setInterval(DownShakeRemove, 3000);
+		setInterval(DownShakeAdd, 2000);
+		// 点击按钮全屏切换
+		function Btnscroll(){
+			var t=$('.TagUpDownC').offset().top;
+			var height=$('.TagUpDownC').height()+t;
+			var move=t-h;
+			if(height>h){
+
+				$('.TagUpDownC').animate({top:move});
+			}
+		}
+		function Btnscrollup(){
+			var t=$('.TagUpDownC').offset().top;
+			var height=$('.TagUpDownC').height()+t;
+			var move=t+h;
+			if(t<0){
+				$('.TagUpDownC').animate({top:move});
+			}else{
+				$('.TagUpDownC').animate({top:0});
+			}
+		}
+		// 鼠标上下滚动全屏切换
+
+	</script>
+</body>
+</html>

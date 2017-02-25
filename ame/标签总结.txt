@@ -1,0 +1,123 @@
+
+————<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
+
+1、这个到底是什么意思？
+2、一些示例使用”,”分离IE的版本，而一些使用”；“，哪个正确？
+3、我想知道IE=9; IE=8; IE=7; IE=EDGE顺序的含义。
+在文档中使用了<!DOCTYPE>
+答复：
+对于IE8及以上版本，例如：
+
+复制代码代码如下:
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7" />
+
+强制浏览器按照特定的版本标准进行渲染。但不支持IE7及以下版本。如果用分号（；）分隔，对于不同的浏览器版本就有不同的兼容性，例如
+
+复制代码代码如下:
+<meta http-equiv="X-UA-Compatible" content="IE=7; IE=9" />
+
+以上就表明，将IE8和IE7按照IE7标准渲染，但是IE9还是按照IE9的标准渲染。它允许有不同的向后兼容水平。尽管在真实情况中，你只要选择一种版本：
+
+复制代码代码如下:
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+
+这对于测试和维护会更加简单。而通常更加有用的方式就是进行仿真模拟
+
+复制代码代码如下:
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+
+对于IE=EDGE
+
+复制代码代码如下:
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+这意味着，会强制浏览器按照最新的标准去渲染。就像在Google’s CDN使用最新版本的JQuery一样，这是按照最新版本，但也可能由于没有固定的版本而破坏你的布局。
+最后，考虑下面这个
+
+复制代码代码如下:
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+
+添加”chrome=1“将允许站点在使用了谷歌浏览器内嵌框架（Chrome Frame）的客户端渲染，对于没有使用的，则没有任何影响。
+
+复制代码代码如下:
+
+For more information, there is plenty to read here, and if you want to learn about ChromeFrame (which I recommend) you can learn about its implementation here.
+PS:X-UA-Compatible是针对 IE8 版本的一个特殊文件头标记，用于为 IE8 指定不同的页面渲染模式，对于ie8之外的浏览器是不识别的。
+目前绝大多数网站都用<meta http-equiv=”X-UA-Compatible” content=”IE=EmulateIE7″ >来作为IE8的兼容方法。为了避免制作出的页面在IE8下面出现错误，建议直接将IE8使用IE7进行渲染。也就是直接在页面的header的meta标签中加入如下代码：
+
+复制代码代码如下:
+
+<meta http-equiv=”X-UA-Compatible” content=”IE=7″ /></p> <p><meta http-equiv=”X-UA-Compatible” content=”IE=EmulateIE7″ ></p> <p><meta http-equiv=”X-UA-Compatible” content=”IE=EmulateIE8″ >
+
+但是<meta http-equiv=”X-UA-Compatible” content=”IE=EmulateIE7″ >仍然是首选。
+StackOverFlow原链接;http://stackoverflow.com/questions/14611264/x-ua-compatible-content-ie-9-ie-8-ie-7-ie-edge?answertab=active#tab-top
+
+
+
+
+
+————CSS伪类
+CSS :before 选择器
+:before 选择器在被选元素的内容前面插入内容。
+请使用 content 属性来指定要插入的内容。
+例子：
+p:before
+{ 
+content:"台词：-";
+background-color:yellow;
+color:red;
+font-weight:bold;
+}
+.main_top:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 30px solid #FFFFFF;
+    border-bottom: 0 solid rgba(0, 0, 0, 0)!important;
+    border-right: 30px solid rgba(0, 0, 0, 0)!important;
+    border-left: 30px solid rgba(0, 0, 0, 0)!important;
+    left: 48%;
+    top: 100%;
+}
+
+CSS :after 选择器
+:after 选择器在被选元素的内容后面插入内容。
+请使用 content 属性来指定要插入的内容。
+p:after
+{ 
+content:"台词：";
+}
+
+CSS3 :nth-child() 选择器
+:nth-child(n) 选择器匹配属于其父元素的第 N 个子元素，不论元素的类型。
+n 可以是数字、关键词或公式。
+p:nth-child(2)
+{
+background:#ff0000;
+}//选择的是父元素（上一级标签）下面的第二个元素
+
+CSS3 :nth-of-type() 选择器
+:nth-of-type(n) 选择器匹配属于父元素的特定类型的第 N 个子元素的每个元素.
+n 可以是数字、关键词或公式。
+p:nth-of-type(2)
+{
+background:#ff0000;
+}//选择的是p标签这个类型里面的第二个元素
+
+CSS3 calc(100% - 40px)
+制作自适应宽度值高度值等
+width：calc(100% - 40px)；
+
+
+
+
+————HTML
+
+<hr /> 标签在 HTML 页面中创建水平线。hr 元素可用于分隔内容。
+
+<fieldset>
+    <legend>健康信息</legend>
+    身高：<input type="text" />
+    体重：<input type="text" />
+  </fieldset>实现框里面有标题健康信息

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js获取table</title>
+	<style type="text/css" media="screen">
+		
+	</style>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+</head>
+<body>
+	<table border="1" id="tablesss">
+  <tr>
+    <th>Month</th>
+    <th>Savings</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td id="3233">100</td>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td id="12">199</td>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td id="332">98</td>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td id="33">97</td>
+  </tr>
+</table>
+<script type="text/javascript">
+	$(function(){
+		var tdlength=$('tr').length-1;
+		var tdarray=new Array();
+		// alert(tdlength);
+		var j=1;
+		for (var i = 0; i <tdlength; i++) {
+			
+			tdarray[i]=$('#tablesss tr:eq('+j+') td:eq(1)').attr('id');
+			j++
+		};
+		$.each(tdarray, function(d, item){      
+		      console.log(d);   
+		      console.log(item);      
+		　　}); 
+	});
+// 取值$("#dataTable tr:eq("+rowindex+") td:eq("+colindex")").html()
+// 给值$("#dataTable tr:eq("+rowindex+") td:eq("+colindex")").html("abc")
+</script>
+</body>
+</html>
