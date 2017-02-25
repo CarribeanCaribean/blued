@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>animate动画测试</title>
+	<link rel="stylesheet" type="text/css" href="animate.css">
+	<style type="text/css" media="screen">
+		h3{cursor: pointer;}
+	</style>
+</head>
+<body>
+	<h3 class="animated ">Test Word</h3>
+	<h3 class="animated">Test Word22222</h3>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		setInterval(function(){
+			if($('h3').hasClass('shake')){
+				$('h3').removeClass('shake');
+			}else{
+				$('h3').addClass('shake');
+			}
+		},2000)
+	</script>
+</body>
+</html>

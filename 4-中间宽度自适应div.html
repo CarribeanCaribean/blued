@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>中间宽度自适应div</title>
+	<style type="text/css">
+		.change-main{overflow-x: hidden;width: 100%;position:relative;}
+		.change-left{width: 220px;height: 170px;float:left;background-color:rgb(231,76,60);display: inline-block;}
+		.change-middle{width:55%;height: 170px;background-color: rgb(46,204,113);float: left;margin-left:10px;display: inline-block;}
+		.change-right{width: 220px;height:170px;background-color: #2980B9;position: absolute;right: 0px;top: 0px;}
+	
+		.change-toggle{top: 0px;left:-25px;position:absolute;background-color: #3498DB;border-radius: 50px;width: 50px;height: 50px;}
+		.clear{clear: both;}
+	</style>
+</head>
+<body class="change-main ">
+<!-- 左边固定宽度div-->	
+	<div class="change-left "></div>
+	 <!-- 中间宽度自适应div -->
+		<div class="change-middle"></div>
+		
+	<!-- 右边浮动的div -->
+	<div class="change-right">
+			<!-- 浮动小球 -->
+			<div class="position:relative;"><div class="change-toggle"></div></div>
+	</div>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+			$(function(){
+				var windowwidth=$(window).width();
+				var leftdivwidth=$('.change-left').width();
+				var rightshowwidth=parseInt(windowwidth-leftdivwidth-45);
+				var hidewidth=-parseInt($('.change-right').width());
+				var showwidth=rightshowwidth+hidewidth;
+				var div=0;//默认右边div显示
+				//打开窗口时触发
+				changemiddle();
+				 //调整窗口时触发 
+				 window.onresize=function(){
+					 	changemiddle();
+				 	}
+
+			 	$('.change-toggle').click(function(event) {
+			 		checkwidth();
+					if(div==0){//右边显示
+						$('.change-right').animate({'right':hidewidth},500);
+						$('.change-middle').animate({'width':rightshowwidth},500);
+						div=1;
+					}else if (div==1) {//右边隐藏
+						$('.change-right').animate({'right':0},500);
+						$('.change-middle').animate({'width':showwidth},500);
+						div=0;
+					};
+				});
+			
+			 	function checkwidth(){
+			 		windowwidth=$(window).width();
+					rightshowwidth=parseInt(windowwidth-leftdivwidth-45);//只减去左边的宽度
+					showwidth=rightshowwidth+hidewidth;//减去右边的宽度
+			 	}
+				function changemiddle(){
+					checkwidth();
+					if(div==0){//右边显示
+							$('.change-middle').width(showwidth);
+						}else if (div==1) {//右边隐藏
+							$('.change-middle').width(rightshowwidth);
+						};
+				};
+
+			});
+				
+	</script>
+</body>
+</html>
