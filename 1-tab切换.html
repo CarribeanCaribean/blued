@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+*{ margin:0; padding:0; list-style:none;}
+.box{ width:430px; border:1px solid #000; margin:100px auto; padding:10px;}
+ul{ overflow:hidden;}
+li{ float:left; height:40px; width:100px; background:#ccc; margin-right:10px; line-height:40px; text-align:center; font-size:24px; font-weight:bold; cursor:pointer;}
+.box div{ height:200px; background:#fcf; display:none;}
+
+
+.box li.cur{ background:#fcf}
+.box div.cur{ display:block;}
+</style>
+<script type="text/javascript">
+window.onload= function(){
+	
+	function mytab(canshu){
+		var tab01 = document.getElementById(canshu)
+		var lis = tab01.getElementsByTagName('li')
+		var divs = tab01.getElementsByTagName('div')
+		
+		for(var i=0; i<lis.length;i++){
+			lis[i].index = i; //.index只是一个自定义标签，利用索引值的概念，单词可变，概念必须是对应的索引值。 
+			lis[i].onmouseover = function(){
+			
+				for(var i=0; i<lis.length;i++){
+					lis[i].className = ''
+				}	
+				this.className = 'cur'
+				
+				
+				for(var i=0;i<divs.length;i++){
+					divs[i].className = ''
+				}
+				
+				divs[this.index].className = 'cur'
+				
+				
+					
+			}	
+		}	
+	}
+	
+	
+	mytab('tab01')
+	
+	
+	
+}
+</script>
+</head>
+
+<body>
+<div class="box" id="tab01">
+	<ul>
+    	<li class="cur">新闻</li>
+    	<li>游戏</li>
+    	<li>财经</li>
+    	<li style="margin:0;">娱乐</li>
+    </ul>
+    <div class="cur">新闻</div>
+    <div>游戏</div>
+    <div>财经</div>
+    <div>娱乐</div>
+</div>
+
+</body>
+</html>
+<!--  
+<div class="showBox-navver">
+                  <ul id="showBox-nav">
+                    <li class="cursor_Nav tab1"><a href="#">全部</a></li>
+                    <li class="tab2"><a href="#">活跃</a></li>
+                    <li class="tab3"><a href="#">推荐</a></li>
+                   </ul>
+               </div>
+
+                <div class="showBox_contacts tab1">
+                	<ul>
+                		<li>
+                        	<span><img src="images/showBox_contactsING01.png"/></span>
+                            <em>张小果</em>
+                            <i></i>
+                        </li>
+                       
+                	</ul>
+                
+                </div>
+                <div class="showBox_contacts showBox_hide tab2" id="22">
+                    <ul>
+                        <li>
+                            <span><img src="images/showBox_contactsING01.png"/></span>
+                            <em>张小</em>
+                            <i></i>
+                        </li>
+                       
+                    </ul>
+                
+                </div>
+                <div class="showBox_contacts showBox_hide tab3" id="33">
+                    <ul>
+                        <li>
+                            <span><img src="images/showBox_contactsING01.png"/></span>
+                            <em>张果</em>
+                            <i></i>
+                        </li>
+                        <li>
+                      </ul>
+                
+                </div>
+
+
+
+
+$('#showBox-nav li').click(function(){ //对应的li加个click事件
+            $(this).addClass('cursor_Nav').siblings().removeClass();//点击当前li改变样式
+            $(".showBox_contacts").hide().eq($('#showBox-nav li').index(this)).show();//跟li的类名一样的div显示，其余隐藏 
+            }); 
+		 }) -->
