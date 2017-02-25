@@ -1,0 +1,113 @@
+//配置
+seajs.config({
+	//配置路径,方便跨目录调用。通过灵活的设置path可以在不影响base的情况下指定到某个目录。
+	path:{'gallery':'https://a.alipayobjects.com/gallery'},
+	//配置别名,配置之后可在模块中使用require调用 require('jquery');
+	alias:{'under':'gallery/under'},
+	//配置变量,有些场景下，模块路径在运行时才能确定
+	vars:{'local':'zh-cn'}
+	//该配置可对模块路径进行映射修改，可用于路径转换、在线调试等。
+	map:[
+		['.js','-debug.js']
+	]
+	//使用preload配置项，可以在普通模块加载前，提前加载并初始化好指定模块。
+	//preload中的空字符串会被忽略掉。
+	// 在老浏览器中，提前加载好 ES5 和 json 模块
+	preload:[
+		Function.prototype.bind?'':'es5-safe',
+		this.JSON?'':'json'
+	]
+	preload:'a'
+	//获取模块文件时，<script> 或 <link> 标签的charset属性。 默认是utf-8
+	//charset还可以是一个函数：
+	charset:function(url){
+		if(url.indexOf('http://example.com/js/xxx')===0){
+			return 'gbk';
+		}
+		return 'utf-8';
+	}
+})
+--------------------------
+// 在加载 b 之前，会确保模块 a 已经加载并执行好,preload 配置不能放在模块文件里面,放在define(function(require,export,module){})里面不能保证模块 a 已经加载并执行好
+seajs.use('./b');
+-----------------------------
+//模块文件,define 是一个全局函数，用来定义模块。
+define(function(require,export,module){
+	//=> 加载的是 https://a.alipayobjects.com/gallery/underscore.js
+	var $=require('gallery');
+	var _=require('under');
+	//变量可用{key}表示
+	var lang=require('./i18n/{local}.js');
+	// 加载的是 path/to/a-debug.js,本来是path/to/a.js
+	var a=require('./a');
+
+})
+----------------------------------
+debug(Boolean)
+
+值为true时，加载器不会删除动态插入的 script 标签。插件也可以根据debug配置，来决策 log 等信息的输出。
+----------------------------------------
+base(String)
+
+Sea.js 在解析顶级标识时，会相对 base 路径来解析。
+
+注意：一般请不要配置 base 路径，把 sea.js 放在合适的路径往往更简单一致。
+---------------------------------------------------
+seajs.use(Function)
+用来在页面中加载一个或多个模块。seajs.use(id, callback?)
+
+// 加载一个模块
+seajs.use('./a');
+
+// 加载一个模块，在加载完成时，执行回调
+seajs.use('./a', function(a) {
+  a.doSomething();
+});
+
+// 加载多个模块，在加载完成时，执行回调
+seajs.use(['./a', './b'], function(a, b) {
+  a.doSomething();
+  b.doSomething();
+});
+注意：seajs.use 与 DOM ready 事件没有任何关系。如果某些操作要确保在 DOM ready 后执行，需要使用 jquery 等类库来保证。比如
+seajs.use(['jquery', './main'], function($, main) {
+    $(document).ready(function() {
+        main.init();
+    });
+});
+注意：use方法第一个参数一定要有，但是可以是null，也可以是一个变量
+var bootstrap = ['bootstrap.css', 'bootstrap-responsive.css', 'bootstrap.js'];
+
+seajs.use(bootstrap, function() {
+    //do something
+});
+----------------------------------------------
+seajs.cache(Ojbect)
+通过 seajs.cache，可以查阅当前模块系统中的所有模块信息。
+
+比如，打开 seajs.org，然后在 WebKit Developer Tools 的 Console 面板中输入 seajs.cache，可以看到：
+
+Object
+  > http://seajs.org/docs/assets/main.js: x
+  > https://a.alipayobjects.com/jquery/jquery/1.10.1/jquery.js: x
+  > __proto__: Object
+                        
+这些就是文档首页用到的模块。展开某一项可以看到模块的具体信息，含义可参考：CMD 模块定义规范 中的 module 小节。
+-------------------------------------
+seajs.reslove(Function)
+类似require.resolve，会利用模块系统的内部机制对传入的字符串参数进行路径解析。
+
+seajs.resolve('jquery');
+// => http://path/to/jquery.js
+
+seajs.resolve('./a', 'http://example.com/to/b.js');
+// => http://example.com/to/a.js
+                        
+seajs.resolve 方法不光可以用来调试路径解析是否正确，还可以用在插件开发环境中。
+seajs.dataObject
+通过 seajs.data，可以查看 seajs 所有配置以及一些内部变量的值，可用于插件开发。当加载遇到问题时，也可用于调试。
+----------------------------------------------
+define
+  --是一个全局函数，用来定义模块.
+在 CMD 规范中，一个模块就是一个文件。
+

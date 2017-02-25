@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>input的type为file</title>
+	<style type="text/css" media="screen">
+		.inputfileBtn{vertical-align: middle;padding: 7px 10px;background-color: #c30000;color: white;text-decoration: none;outline: none;font-size: 12px;position: relative;}
+		.inputChooseFile{opacity: 0;position: absolute;z-index: 10;
+						filter:alpha(opacity=0);
+				       -moz-opacity:0;
+				       -khtml-opacity: 0;
+						.position:static;
+						.zoom:1;
+		}
+		.inputFileShowPath{width: 200px;padding: 5px 10px;outline:none;border: 1px solid #ccc;color:#333;vertical-align: middle;}
+/* 谷歌safari兼容 */
+@media screen and (-webkit-min-device-pixel-ratio:0){
+	.inputFileShowPath{vertical-align: baseline;}
+	.inputfileBtn{vertical-align: baseline;}
+}
+/* 火狐兼容 */
+@-moz-document url-prefix(){
+
+}
+	</style>
+</head>
+<body>
+	<div>
+		 <input type="text"  class="inputFileShowPath"  id='textfield_5' value="请选择文件"/>
+	      <a class="inputfileBtn">
+	      <input type="file" onchange="document.getElementById('textfield_5').value=this.value"  class="inputChooseFile">
+	      请选择</a>
+	</div>
+	<div style="posiiton:relative;margin-top: 10px;">上传文件：<input type="text"  class="inputFileShowPath" id="textfield_4" value="点击选择文件"/><input type="file" onchange="document.getElementById('textfield_4').value=this.value"  class="inputChooseFile" style="position:absolute;left:88px;" /></div>
+</body>
+</html>
